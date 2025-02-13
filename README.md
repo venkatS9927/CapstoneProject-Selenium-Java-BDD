@@ -25,7 +25,7 @@ To ensure a structured approach in designing the test framework, the following c
     - Create a Maven project.
     - Update pom.xml with necessary dependencies for Selenium and BDD (Cucumber, TestNG, etc.).
 2. **Version Control & Branching**
-    - Create a new branch: CapstoneProject_4.
+    - Create a new branch: CapstoneProject-Selenium-Java-BDD.
     - Implement the test scripts and commit the code to this branch.
     - Push the completed code to the repository.
 3. **BDD Framework Implementation**

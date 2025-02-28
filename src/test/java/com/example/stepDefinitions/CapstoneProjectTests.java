@@ -1,7 +1,7 @@
 package com.example.stepDefinitions;
 
 import com.example.base.BaseTest;
-import com.example.pages.BasePage;
+import com.example.pages.HomePage;
 import io.cucumber.java.Before;
 import io.cucumber.java.After;
 import io.cucumber.java.en.*;
@@ -9,12 +9,12 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 
 public class CapstoneProjectTests extends BaseTest {
-    private BasePage page;
+    private HomePage homePage;
 
     @Before
     public void initPage() {
-        setUp(); // Ensure this method is called to initialize the WebDriver
-        page = new BasePage(driver);
+        setUp(); // Initialize WebDriver
+        homePage = new HomePage(driver);
     }
 
     @After
@@ -28,17 +28,17 @@ public class CapstoneProjectTests extends BaseTest {
 
     @Given("User navigates to {string}")
     public void user_navigates_to(String url) {
-        page.navigateTo(url);
+        homePage.navigateTo(url);
     }
 
     @Then("Verify the page title is {string}")
     public void verify_the_page_title_is(String title) {
-        page.verifyPageTitle(title);
+        homePage.verifyPageTitle(title);
     }
 
     @When("User clicks on {string} link")
     public void user_clicks_on_link(String linkText) {
-        page.click(By.linkText(linkText));
+        homePage.clickLink(linkText);
     }
 
     @Then("Verify the text on the page is {string}")
@@ -46,7 +46,7 @@ public class CapstoneProjectTests extends BaseTest {
         String[] expectedTextArray = expectedTexts.split("\\|");
         for (String expectedText : expectedTextArray) {
             try {
-                page.verifyTextPresent(expectedText);
+                homePage.verifyTextPresent(expectedText);
                 return;
             } catch (AssertionError ignored) {
             }
@@ -62,10 +62,10 @@ public class CapstoneProjectTests extends BaseTest {
 
     @Then("Select {string} from dropdown")
     public void select_from_dropdown(String option) {
-        page.selectFromDropdown(By.id("dropdown"), option);
+        homePage.selectFromDropdown(option);
     }
 
-    @Then("Confirm it is selected")
+    @And("Confirm it is selected")
     public void confirm_it_is_selected() {
         boolean isSelected = driver.findElement(By.cssSelector("#dropdown option:checked")).isSelected();
         logResult("Dropdown option selected: " + isSelected, isSelected);
